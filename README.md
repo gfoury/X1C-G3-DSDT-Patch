@@ -1,0 +1,1 @@
+# X1C-G3-DSDT-Patch
