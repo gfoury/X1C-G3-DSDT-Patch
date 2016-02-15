@@ -58,10 +58,14 @@ UNTOUCHED:=$(filter-out $(DSDT) $(BRIGHT) $(SANV),$(UNTOUCHED))
 
 UNTOUCHED_AML=$(addsuffix .aml,$(UNTOUCHED))
 
+# testy:
+# 	@echo $(UNTOUCHED_AML)
+# 	@echo SSDT-0.aml SSDT-10.aml SSDT-12.aml SSDT-13.aml SSDT-14.aml SSDT-2.aml SSDT-3.aml SSDT-4.aml SSDT-5.aml SSDT-6.aml
+
 # Here is the list of AML files we don't expect to touch, as a sanity check.
-ifneq ($(UNTOUCHED_AML),SSDT-0.aml SSDT-10.aml SSDT-12.aml SSDT-13.aml SSDT-14.aml SSDT-2.aml SSDT-3.aml SSDT-4.aml SSDT-5.aml SSDT-6.aml)
-$(error The list of SSDTs I am planning to just copy unchanged is different than I expected. Perhaps SSDTs are missing or have been renamed. This script is expecting to only modify SSDT-1 and SSDT-11.)
-endif
+#ifneq ($(UNTOUCHED_AML),SSDT-0.aml SSDT-10.aml SSDT-12.aml SSDT-13.aml SSDT-14.aml SSDT-2.aml SSDT-3.aml SSDT-4.aml SSDT-5.aml SSDT-6.aml)
+#$(error The list of SSDTs I am planning to just copy unchanged is different than I expected. Perhaps SSDTs are missing or have been renamed. This script is expecting to only modify SSDT-1 and SSDT-11.)
+#endif
 
 UNTOUCHED_IN_NATIVE=$(addprefix $(NATIVE_ORIGIN)/, $(UNTOUCHED_AML))
 UNTOUCHED_IN_BUILDDIR=$(addprefix $(BUILDDIR)/, $(UNTOUCHED_AML))
@@ -165,13 +169,16 @@ $(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl
 	patchmatic $@ $(LAPTOPGIT)/system/system_IRQ.txt
 	patchmatic $@ $(LAPTOPGIT)/system/system_RTC.txt
 	patchmatic $@ $(LAPTOPGIT)/system/system_OSYS_win8.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_PNOT.txt
+	#patchmatic $@ $(LAPTOPGIT)/system/system_PNOT.txt
 	patchmatic $@ $(LAPTOPGIT)/system/system_IMEI.txt
 	patchmatic $@ $(LAPTOPGIT)/battery/battery_Lenovo-X220.txt
 	# already fixed ADGB
 	patchmatic $@ $(LAPTOPGIT)/graphics/graphics_PNLF_haswell.txt 
 	patchmatic $@ $(LAPTOPGIT)/graphics/graphics_Rename-PCI0_VID.txt
 	patchmatic $@ patches/brightbutton.txt
+
+# This would use the 0x6d USB patch
+
 
 $(PATCHED)/$(BRIGHT).dsl: $(UNPATCHED)/$(BRIGHT).dsl 
 	cp $(UNPATCHED)/$(BRIGHT).dsl $(PATCHED)
