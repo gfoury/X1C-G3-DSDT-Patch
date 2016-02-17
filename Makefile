@@ -20,6 +20,7 @@ CLOVERCONFIG=./clover-laptop-config
 #DEBUGGIT=../debug.git
 BUILDDIR=./build
 PATCHED=./patched
+PATCHTITLE=./patchtitle
 UNPATCHED=./unpatched
 NATIVE=./native_clover
 NATIVE_ORIGIN=./native_clover/origin
@@ -161,32 +162,32 @@ patch: $(ALL_PATCHED)
 
 $(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl
 	cp $(UNPATCHED)/$(DSDT).dsl $(PATCHED)
-	patchmatic $@ $(LAPTOPGIT)/syntax/remove_DSM.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_SMBUS.txt
-	# not doing audio layout 12
-	patchmatic $@ $(LAPTOPGIT)/system/system_WAK2.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_HPET.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_IRQ.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_RTC.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_OSYS_win8.txt
-	#patchmatic $@ $(LAPTOPGIT)/system/system_PNOT.txt
-	patchmatic $@ $(LAPTOPGIT)/system/system_IMEI.txt
-	patchmatic $@ $(LAPTOPGIT)/battery/battery_Lenovo-X220.txt
-	# already fixed ADGB
-	patchmatic $@ $(LAPTOPGIT)/graphics/graphics_PNLF_haswell.txt 
-	patchmatic $@ $(LAPTOPGIT)/graphics/graphics_Rename-PCI0_VID.txt
-	patchmatic $@ patches/brightbutton.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) syntax/remove_DSM.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_SMBUS.txt
+	@# not doing audio layout 12
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_WAK2.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_HPET.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_IRQ.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_RTC.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_OSYS_win8.txt
+	@#$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_PNOT.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_IMEI.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) battery/battery_Lenovo-X220.txt
+	@# already fixed ADGB
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_PNLF_haswell.txt 
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_Rename-PCI0_VID.txt
+	@$(PATCHTITLE) $@ patches brightbutton.txt
 
 # This would use the 0x6d USB patch
 
 
 $(PATCHED)/$(BRIGHT).dsl: $(UNPATCHED)/$(BRIGHT).dsl 
 	cp $(UNPATCHED)/$(BRIGHT).dsl $(PATCHED)
-	patchmatic $@ $(LAPTOPGIT)/graphics/graphics_Rename-PCI0_VID.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_Rename-PCI0_VID.txt
 
 $(PATCHED)/$(SANV).dsl: $(UNPATCHED)/$(SANV).dsl 
 	cp $(UNPATCHED)/$(SANV).dsl $(PATCHED)
-	patchmatic $@ $(LAPTOPGIT)/graphics/graphics_Rename-PCI0_VID.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_Rename-PCI0_VID.txt
 
 $(UNTOUCHED_IN_BUILDDIR): $(BUILDDIR)/%: $(NATIVE_ORIGIN)/%
 	cp $< $@
