@@ -91,7 +91,7 @@ Security Mode|Normal
 Setting|Value
 --- | ---
 Security Chip Selection|Discrete TPM
-Security Chip|Active
+Security Chip|**Disabled**
 Physical Presence for Provisioning|Disabled
 Physical Presence for Clear|Enabled
 

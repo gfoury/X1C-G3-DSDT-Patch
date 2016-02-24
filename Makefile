@@ -164,6 +164,7 @@ $(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl
 	cp $(UNPATCHED)/$(DSDT).dsl $(PATCHED)
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) syntax/remove_DSM.txt
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_SMBUS.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_Mutex.txt
 	@# not doing audio layout 12
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_WAK2.txt
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) system/system_HPET.txt
@@ -177,6 +178,8 @@ $(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_PNLF_haswell.txt 
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_Rename-PCI0_VID.txt
 	@$(PATCHTITLE) $@ patches brightbutton.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) usb/usb_prw_0x6d_xhc.txt
+	@$(PATCHTITLE) $@ $(LAPTOPGIT) misc/misc_Lid_PRW.txt
 
 # This would use the 0x6d USB patch
 
