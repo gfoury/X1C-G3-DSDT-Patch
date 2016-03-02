@@ -179,7 +179,9 @@ $(PATCHED)/$(DSDT).dsl: $(UNPATCHED)/$(DSDT).dsl
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) graphics/graphics_Rename-PCI0_VID.txt
 	@$(PATCHTITLE) $@ patches brightbutton.txt
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) usb/usb_prw_0x6d_xhc.txt
+	# This is questionable
 	@$(PATCHTITLE) $@ $(LAPTOPGIT) misc/misc_Lid_PRW.txt
+	@$(PATCHTITLE) $@ patches led-lid.txt
 
 # This would use the 0x6d USB patch
 
