@@ -31,6 +31,10 @@ Copy `build/*.aml` to the `EFI/CLOVER/ACPI/patched` directory.
 
 Make sure that your Clover plist has `DropOem` set. 
 
+## Notes
+
+If you have the DW1560, the card will be half-broken after sleep. Turn off "Wake for network access" under "Energy Saver" in System Preferences. 
+
 ## Credits
 
 jcsnider wrote the guide for the X1 Carbon Gen 3, and this patcher just automates a small portion of his work. See http://www.tonymacx86.com/yosemite-laptop-guides/162391-guide-2015-x1-carbon-yosemite.html
